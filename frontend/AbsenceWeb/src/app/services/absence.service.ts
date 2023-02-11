@@ -12,9 +12,9 @@ export class AbsenceService {
 
   public getAbsences(): Observable<any>{
 
-    return this.http.get("http://localhost:8080/ABSENCE-SERVICE/Absences",
+    return this.http.get("http://localhost:8085/ABSENCE-SERVICE/absences",
       {headers:new HttpHeaders({
-      Authorization:'Bearer '+this.key.kc.token,
+      Authorization:'Bearer ' + this.key.kc.token,
     })});
 
 

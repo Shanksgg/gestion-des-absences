@@ -1,36 +1,33 @@
 import {Component, OnInit} from '@angular/core';
 import {KeycloakSecurityService} from "../services/keycloak-security.service";
+import { SecurityService } from '../services/security.service'
 
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.css']
+  styleUrls: ['./navigation.component.css'],
 })
-export class NavigationComponent implements OnInit{
-  name:any;
-  constructor(public key:KeycloakSecurityService) {
+export class NavigationComponent implements OnInit {
+  constructor(public securityService:SecurityService) {
   }
 
-  ngOnInit(): void {
-    this.name=this.key.kc.tokenParsed;
-    console.log("this",this.name);
+  public async ngOnInit() {
 
   }
 
   onLogout() {
-    this.key.kc.logout();
+    this.securityService.kcService.logout(window.location.origin);
   }
 
-  onLogin() {
-    this.key.kc.login();
+  public  getToken() {
+    this.securityService.init();
+    console.log(this.securityService.profile)
   }
 
-  onChangePassword() {
-    this.key.kc.accountManagement();
-  }
-
-  isAppManager() {
-
-    return this.key.kc.hasRealmRole("ADMIN");
+  async login(){
+    await this.securityService.kcService.login({
+      redirectUri : window.location.origin
+    })
+    console.log(this.securityService.profile)
   }
 }

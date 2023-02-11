@@ -1,56 +1,48 @@
 <nav class="navbar navbar-dark navbar-expand-lg  bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
+  <div class="container">
+    <a class="navbar-brand fw-bold" routerLink="" style="">AB</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav" *ngIf="isAppManager()">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 py-2">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" routerLink="">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/Abcenses" >Abcenses</a>
+          <a class="nav-link" routerLink="/absences" routerLinkActive="active">Absences</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/Students">Students</a>
+          <a class="nav-link" routerLink="/students" routerLinkActive="active">Students</a>
         </li>
         <li class="nav-item" >
-          <a class="nav-link" routerLink="/Professors">Professors</a>
+          <a class="nav-link" routerLink="/professors" routerLinkActive="active">Professors</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
+      </ul>
+
+      <div class="d-flex" role="search">
+        <div class="dropdown">
+          <a class="nav-link dropdown-toggle text-light"
+             role="button"
+             data-bs-toggle="dropdown"
+             aria-expanded="false"
+             *ngIf="false; else loginTemplate">
+            User
           </a>
-          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+
+          <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><hr class="dropdown-divider" role="button"></li>
+            <li><a class="dropdown-item" (click)="onLogout()" role="button">Log out</a></li>
           </ul>
-        </li>
-      </ul>
-
-    </div>
-
-
-    <div class="btn-group" *ngIf="key.kc.authenticated">
-      <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-        {{name.preferred_username}}
-      </button>
-      <ul class="dropdown-menu  dropdown-menu-lg-end">
-        <a class="btn dropdown-item clickable"  (click)="onLogout()">Logout</a>
-        <a class="dropdown-item clickable " (click)="onChangePassword()" >Change Password</a>
-
-      </ul>
-    </div>
-    <div class="btn-group" *ngIf="!key.kc.authenticated">
-      <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-        login
-      </button>
-      <ul class="dropdown-menu  dropdown-menu-lg-end">
-        <a class="btn dropdown-item" (click)="onLogin()">Log in</a>
-
-      </ul>
+        </div>
+        <ng-template #loginTemplate>
+          <a class="btn btn-primary"
+             role="button" (click)="getToken()">
+            Login
+          </a>
+        </ng-template>
+      </div>
     </div>
   </div>
 </nav>

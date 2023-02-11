@@ -6,6 +6,7 @@ import emsi.ma.absenceservice.model.Student;
 import emsi.ma.absenceservice.repository.AbsenceRepository;
 import emsi.ma.absenceservice.service.CourseRestClient;
 import emsi.ma.absenceservice.service.StudentRestClient;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,8 +24,8 @@ public class AbsenceRestController {
         this.studentRestClient = studentRestClient;
     }
 
-    @GetMapping("/Absences")
-//    @PreAuthorize("hasAnyAuthority('USER')")
+    @PreAuthorize("hasAnyAuthority('USER')")
+    @GetMapping("/absences")
     public List<Absence> getAll(){
         List<Absence> absences=absenceRepository.findAll();
 //        absences.forEach(absence -> {
@@ -33,21 +34,24 @@ public class AbsenceRestController {
 //
 //        });
 //        return  absences;
-        return getAbsence(absences);
+        return getAbsences(absences);
     }
 
+    @PreAuthorize("hasAnyAuthority('USER')")
     @GetMapping("/absences/students/{id}")
     public List<Absence> getAbsenceByStudentsID(@PathVariable  Long id){
-        List<Absence> absences=absenceRepository.findAbsencesByStudentID(id);
-        return getAbsence(absences);
+        List<Absence> absences = absenceRepository.findAbsencesByStudentID(id);
+        return getAbsences(absences);
     }
 
+    @PreAuthorize("hasAnyAuthority('USER')")
     @Transactional
     @DeleteMapping("/absences/{ids}/{idc}")
     public void deleteAbsence(@PathVariable Long ids,@PathVariable Long idc){
         absenceRepository.deleteAbsenceByStudentIDAndCourseID(ids, idc);
     }
 
+    @PreAuthorize("hasAnyAuthority('USER')")
     @PostMapping("/absences")
     public Absence addAbsence(@RequestBody Absence absence ){
         Student student = studentRestClient.getStudentById(absence.getStudentID());
@@ -66,7 +70,7 @@ public class AbsenceRestController {
         }
     }
 
-    public List<Absence> getAbsence( List<Absence> absences){
+    public List<Absence> getAbsences( List<Absence> absences){
         absences.forEach(absence -> {
             absence.setCourse(courseRestClient.getCourseById(absence.getCourseID()));
             absence.setStudent(studentRestClient.getStudentById(absence.getStudentID()));

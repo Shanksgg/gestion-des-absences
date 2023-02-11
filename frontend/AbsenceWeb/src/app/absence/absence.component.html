@@ -1,6 +1,6 @@
-<div class="card" style="width: 60%; margin: 20px auto; box-shadow: 0px 0px 10px 0px #ccc;">
-  <h3 class="table-title text-center mb-3">List of Absences</h3>
-  <table class="table" style="margin: 0 auto;">
+<div class=" container">
+  <h2 class="my-3">List of Absences</h2>
+  <table class="table">
     <thead >
     <tr>
       <th>Student ID</th>
@@ -11,7 +11,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let absence of absences">
+    <tr ngIf="absence; else emptyList" *ngFor="let absence of absences">
       <td>{{ absence.studentID }}</td>
       <td>{{ absence.student.cne }}</td>
       <td>{{ absence.course.name }}--{{ absence.course.annee }}</td>
@@ -25,6 +25,9 @@
         </button>
       </td>
     </tr>
+    <ng-template emptyList>
+      <p>list is empty!</p>
+    </ng-template>
     </tbody>
   </table>
 </div>
