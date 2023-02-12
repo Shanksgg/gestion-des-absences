@@ -1,3 +1,9 @@
-<div class="container">
-    <h2 class="my-3">Hello, buddy</h2>
+<div class="container" *ngIf="firstName; else helloTemplate">
+    <h2 class="my-4 text-center">Hello, {{firstName}}</h2>
 </div>
+
+<ng-template #helloTemplate>
+    <div class="container">
+        <h2 class="my-4 text-center">Hello, buddy</h2>
+    </div>
+</ng-template>

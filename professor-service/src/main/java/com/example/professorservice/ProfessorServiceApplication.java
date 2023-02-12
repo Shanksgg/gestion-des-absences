@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 import java.text.SimpleDateFormat;
 
 @SpringBootApplication
@@ -20,6 +19,7 @@ public class ProfessorServiceApplication implements CommandLineRunner {
     ProfessorRepository professorRepository;
     @Override
     public void run(String... args) throws Exception {
-        professorRepository.save(new Professor(null,"Anass","QAGG",new SimpleDateFormat("dd-MM-yyyy").parse("10-08-2000"),"anass@"));
+        professorRepository.save(new Professor(null,"Anass","QAGG",new SimpleDateFormat("dd-MM-yyyy").parse("10-08-2000"),"anass@gmail.com"));
+        professorRepository.save(new Professor(null,"Ayoub","QAEE",new SimpleDateFormat("dd-MM-yyyy").parse("10-08-1996"),"ayoub@gmail.com"));
     }
 }

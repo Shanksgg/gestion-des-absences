@@ -1,2 +1,10 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.ab-h1 {
+    font-size: 40px;
+}
+
+.ab-h2 {
+    font-size: 32px !important;
+}

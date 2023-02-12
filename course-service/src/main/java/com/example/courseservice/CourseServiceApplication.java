@@ -25,5 +25,6 @@ public class CourseServiceApplication implements CommandLineRunner {
         repositoryRestConfiguration.exposeIdsFor(Course.class);
         courseRepository.save(new Course(null,"C++","5IIR",16));
         courseRepository.save(new Course(null,"C#","5IIR",8));
+        courseRepository.save(new Course(null,"Java","5IIR",8));
     }
 }

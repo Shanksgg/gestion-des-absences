@@ -30,12 +30,13 @@ public class AbsenceServiceApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) {
-		for (int i = 0; i < 5; i++) {
-			Student student = studentRestClient.getStudentById(1L);
-			Course course = courseRestClient.getCourseById(1L);
+		for (long i = 1; i <= 3; i++) {
+			Student student = studentRestClient.getStudentById(i);
+			Course course = courseRestClient.getCourseById(i);
 			Absence absence = new Absence();
 			absence.setCourseID(course.getId());
 			absence.setStudentID(student.getId());
+			absence.setNbrAbsence(1 + (int)(Math.random() * ((3 - 1) + 1)));
 			absenceRepository.save(absence);
 		}
 	}

@@ -1,5 +1,7 @@
 <div class="container">
-  <h2 class="my-3">List of Professors</h2>
+  <p class="my-5 ab-h2">List of Professors
+    <span class="text-muted" style="font-size: 14px">(Not protected)</span>
+  </p>
   <table class="table">
     <thead>
     <tr>
@@ -14,18 +16,18 @@
     <tr *ngFor="let professor of professors">
       <td>{{ professor.nom }}</td>
       <td>{{ professor.cin }}</td>
-      <!-- <td>{{ professor.dateNaissance | date : 'dd/MM/yyyy' }}</td> -->
-      <td>NA</td>
+      <td>{{ professor.dateNaissance | date : 'dd/MM/yyyy' }}</td>
       <td>{{ professor.email }}</td>
       <td>
-        <button class="btn btn-success btn-sm mr-2" (click)="handelUpdateProfessor(professor)">
+        <button class="btn btn-success btn-sm" style="margin-right: 4px;" (click)="handelUpdateProfessor(professor)">
           <i class="bi bi-pencil-square"></i>
         </button>
-        <button class="btn btn-danger btn-sm" (click)="handelDeleteProfessor(professor)">
+        <button class="btn btn-danger btn-sm" style="margin-left: 4px;" (click)="handelDeleteProfessor(professor)">
           <i class="bi bi-trash3"></i>
         </button>
       </td>
     </tr>
+    <p class="text-muted p-2" *ngIf="!professors">List is empty</p>
     </tbody>
   </table>
 </div>

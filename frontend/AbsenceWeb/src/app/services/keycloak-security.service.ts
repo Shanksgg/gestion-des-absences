@@ -6,54 +6,28 @@ declare var  Keycloak :any;
 @Injectable({
   providedIn: 'root'
 })
-export class KeycloakSecurityService {
+export class KeycloakSecurityService{
   public profile? : KeycloakProfile;
-  public kc! :KeycloakInstance;
+  public kcInstance! :KeycloakInstance;
 
-  constructor(private readonly kcService: KeycloakService) {
-    this.ngOnInit();
-    this.kcService
-        .isLoggedIn()
-        .then( loggedIn => {
-          if( loggedIn ) {
-            console.log(this.kcService.getUsername());
-          }
-        })
-        .catch( reason => console.log ( reason ));
-  }
-
-  public async ngOnInit() {
-    let isLogged = await this.kcService.isLoggedIn();
-    console.log(this.kc.loadUserInfo())
-    if(isLogged) {
-      console.log("this.profile.firstName")
-      this.profile = await this.kcService.loadUserProfile();
-      console.log(this.profile.firstName)
-    }
-  }
-  async init2(){
-    this.kcService.keycloakEvents$.subscribe({
-      next: (e) => {
-        if (e.type == KeycloakEventType.OnAuthSuccess) {
-          this.kcService.loadUserProfile().then(profile=>{
-            this.profile=profile;
-          });
-        }
-      }
-    });
-  }
 
   async init() {
-    this.kc = new Keycloak({
+    this.kcInstance = new Keycloak({
       url:"http://localhost:8888",
       realm: "jee-realm",
-      clientId: "jee-client"
-    })
-    await this.kc.init({
-      onLoad: 'login-required',
+      clientId: "jee-client",
+      clientSecret: "J4RYnRGulk5yTaTKHLcx7x5wJdEBhbHO",
+    }),
+    await this.kcInstance.init({
+      onLoad: 'check-sso',
       checkLoginIframe: false
     });
-    // console.log(this.kc.token)
   }
 
+  // public hasRoleIn(roles:string[]):boolean{
+  //   let userRoles = this.kc.getUserRoles();
+  //   for(let role of roles){
+  //     if (userRoles.includes(role)) return true;
+  //   } return false;
+  // }
 }

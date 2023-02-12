@@ -4,4 +4,5 @@ export interface Student {
   cin: string
   dateNaissance: string
   email: string
+  nom: string
 }

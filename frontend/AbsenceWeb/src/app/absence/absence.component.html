@@ -1,9 +1,12 @@
 <div class=" container">
-  <h2 class="my-3">List of Absences</h2>
+  <p class="my-5 ab-h2">List of Absences
+    <span class="text-muted" style="font-size: 14px">(Protected)</span>
+  </p>
+
   <table class="table">
     <thead >
     <tr>
-      <th>Student ID</th>
+      <th>Absence ID</th>
       <th>Student Name</th>
       <th>Course</th>
       <th>Number of Absences</th>
@@ -11,23 +14,22 @@
     </tr>
     </thead>
     <tbody>
-    <tr ngIf="absence; else emptyList" *ngFor="let absence of absences">
-      <td>{{ absence.studentID }}</td>
-      <td>{{ absence.student.cne }}</td>
-      <td>{{ absence.course.name }}--{{ absence.course.annee }}</td>
-      <td>{{ absence.nbrAbsence }}</td>
+
+    <tr *ngFor="let student of students">
+      <td>{{ student.id }}</td>
+      <td>{{ student.student.nom }}</td>
+      <td>{{ student.course.name }}</td>
+      <td>{{ student.nbrAbsence }}</td>
       <td>
-        <button class="btn btn-success btn-sm mr-2" (click)="handleUpdateAbsence(absence)">
+        <button class="btn btn-success btn-sm" style="margin-right: 4px;" (click)="handleUpdateAbsence(student)">
           <i class="bi bi-pencil-square"></i>
         </button>
-        <button class="btn btn-danger btn-sm" (click)="handleDeleteAbsence(absence)">
+        <button class="btn btn-danger btn-sm" style="margin-left: 4px;" (click)="handleDeleteAbsence(student)">
           <i class="bi bi-trash3"></i>
         </button>
       </td>
     </tr>
-    <ng-template emptyList>
-      <p>list is empty!</p>
-    </ng-template>
+    <p class="text-muted p-2" *ngIf="!students">List is empty</p>
     </tbody>
   </table>
 </div>
