@@ -23,8 +23,8 @@ public class CourseServiceApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         repositoryRestConfiguration.exposeIdsFor(Course.class);
-        courseRepository.save(new Course(null,"C++","5IIR",16));
-        courseRepository.save(new Course(null,"C#","5IIR",8));
-        courseRepository.save(new Course(null,"Java","5IIR",8));
+        courseRepository.save(new Course(1L,"C++","5IIR",16));
+        courseRepository.save(new Course(2L,"C#","5IIR",8));
+        courseRepository.save(new Course(3L,"Java","5IIR",8));
     }
 }

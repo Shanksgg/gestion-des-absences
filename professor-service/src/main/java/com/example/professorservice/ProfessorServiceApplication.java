@@ -19,7 +19,7 @@ public class ProfessorServiceApplication implements CommandLineRunner {
     ProfessorRepository professorRepository;
     @Override
     public void run(String... args) throws Exception {
-        professorRepository.save(new Professor(null,"Anass","QAGG",new SimpleDateFormat("dd-MM-yyyy").parse("10-08-2000"),"anass@gmail.com"));
-        professorRepository.save(new Professor(null,"Ayoub","QAEE",new SimpleDateFormat("dd-MM-yyyy").parse("10-08-1996"),"ayoub@gmail.com"));
+        professorRepository.save(new Professor(1L,"Anass","QAGG",new SimpleDateFormat("dd-MM-yyyy").parse("10-08-2000"),"anass@gmail.com"));
+        professorRepository.save(new Professor(2L,"Ayoub","QAEE",new SimpleDateFormat("dd-MM-yyyy").parse("10-08-1996"),"ayoub@gmail.com"));
     }
 }

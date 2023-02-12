@@ -27,8 +27,8 @@ public class StudentServiceApplication implements CommandLineRunner  {
     @Override
     public void run(String... args) throws Exception {
         repositoryRestConfiguration.exposeIdsFor(Student.class);
-        studentRepository.save(new Student(null,"Anass Soukrat","QAGG","QAFF",new SimpleDateFormat("dd-MM-yyyy").parse("10-08-2000"),"anass@gmail.com"));
-        studentRepository.save(new Student(null,"Houda Saghir","QAHH","QAFE",new SimpleDateFormat("dd-MM-yyyy").parse("10-08-2000"),"houda@gmail.com"));
-        studentRepository.save(new Student(null,"Ayoub Daanoune","QAXX","QAEE",new SimpleDateFormat("dd-MM-yyyy").parse("10-08-1996"),"ayoub@gmail.com"));
+        studentRepository.save(new Student(1L,"Anass Soukrat","QAGG","QAFF",new SimpleDateFormat("dd-MM-yyyy").parse("10-08-2000"),"anass@gmail.com"));
+        studentRepository.save(new Student(2L,"Houda Saghir","QAHH","QAFE",new SimpleDateFormat("dd-MM-yyyy").parse("10-08-2000"),"houda@gmail.com"));
+        studentRepository.save(new Student(3L,"Ayoub Daanoune","QAXX","QAEE",new SimpleDateFormat("dd-MM-yyyy").parse("10-08-1996"),"ayoub@gmail.com"));
     }
 }
