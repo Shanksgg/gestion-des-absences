@@ -8,9 +8,9 @@ import { AuthGuard } from "./guards/security.guard";
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'absences', component: AbsenceComponent },
-  { path: 'students', component: StudentComponent },
-  { path: 'professors', component: ProfessorComponent }
+  { path: 'absences', component: AbsenceComponent},
+  { path: 'students', component: StudentComponent},
+  { path: 'professors', component: ProfessorComponent},
 ];
 
 @NgModule({

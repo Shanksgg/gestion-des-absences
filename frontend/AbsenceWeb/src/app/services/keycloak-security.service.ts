@@ -10,7 +10,6 @@ export class KeycloakSecurityService{
   public profile? : KeycloakProfile;
   public kcInstance! :KeycloakInstance;
 
-
   async init() {
     this.kcInstance = new Keycloak({
       url:"http://localhost:8888",
@@ -23,11 +22,4 @@ export class KeycloakSecurityService{
       checkLoginIframe: false
     });
   }
-
-  // public hasRoleIn(roles:string[]):boolean{
-  //   let userRoles = this.kc.getUserRoles();
-  //   for(let role of roles){
-  //     if (userRoles.includes(role)) return true;
-  //   } return false;
-  // }
 }

@@ -28,12 +28,6 @@ public class AbsenceRestController {
     @GetMapping("/absences")
     public List<Absence> getAll(){
         List<Absence> absences=absenceRepository.findAll();
-//        absences.forEach(absence -> {
-//            absence.setCourse(courseRestClient.getCourseById(absence.getCourseID()));
-//            absence.setStudent(studentRestClient.getStudentById(absence.getStudentID()));
-//
-//        });
-//        return  absences;
         return getAbsences(absences);
     }
 
